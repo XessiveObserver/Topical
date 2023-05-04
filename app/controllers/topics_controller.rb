@@ -21,7 +21,7 @@ class TopicsController < ApplicationController
 
   # POST /topics or /topics.json
   def create
-    @topic = Topic.new(topic_params)
+    @topic = current_user.topics.build(topic_params)
 
     respond_to do |format|
       if @topic.save
