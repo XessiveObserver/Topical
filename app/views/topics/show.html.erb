@@ -19,10 +19,12 @@
       <div id="messages">
         <%= render @topic.messages %>
       </div>
+    <% if user_signed_in? %>
       <div>
         <%= turbo_frame_tag "new_message", src: new_topic_message_path(@topic),
          target: "_top" %>
       </div>
+    <% end %>
     </div>
 
   </div>
