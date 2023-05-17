@@ -6,11 +6,13 @@
     <%= turbo_frame_tag "topic" do %>
       <%= render @topic %>
 
-      <%= link_to 'Edit this topic', edit_topic_path(@topic), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <div class="inline-block ml-2">
-        <%= link_to 'Destroy this topic', topic_path(@topic),
-         data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
-      </div>
+      <% if user_signed_in? %>
+        <%= link_to 'Edit this topic', edit_topic_path(@topic), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+        <div class="inline-block ml-2">
+          <%= link_to 'Destroy this topic', topic_path(@topic),
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+        </div>
+      <% end %>
     <% end %>
       <%= link_to 'Back to topics', topics_path, "data-turbo-frame": "_top", class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
     
